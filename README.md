@@ -11,7 +11,7 @@ This plugin will:
 - Set up CloudFormation in front of Route 53 failover with TLS 1.2 specified
 - Set up Route 53 with the desired domain name in front of CloudFront
 
-<img src="multi-regional-api.png" width="700">
+<img src="multi-regional-api.jpg" width="800">
 
 1. Install plugin:
 
