@@ -32,5 +32,12 @@
   "dependencies": {
     "js-yaml": "^4.1.0",
     "lodash": "^4.17.21"
+  },
+  "bugs": {
+    "url": "https://github.com/tho-asterist/serverless-multi-region/issues"
+  },
+  "homepage": "https://github.com/tho-asterist/serverless-multi-region#readme",
+  "directories": {
+    "test": "test"
   }
 }
