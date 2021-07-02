@@ -39,14 +39,13 @@ class Plugin {
       return;
     }
 
-    this.hostName = `${hostSegments[hostSegments.length - 2]}.${
-      hostSegments[hostSegments.length - 1]
-    }`;
+    this.hostName = `${hostSegments[hostSegments.length - 3]}.${hostSegments[hostSegments.length - 2]}.${hostSegments[hostSegments.length - 1]}`; // eslint-disable-line
+
     this.regionalDomainName = this.buildRegionalDomainName(hostSegments);
 
     const baseResources = this.serverless.service.provider.compiledCloudFormationTemplate;
 
-    const filename = path.resolve(__dirname, 'resources.yml') // eslint-disable-line
+    const filename = path.resolve(__dirname, 'resources.yml'); // eslint-disable-line
     const content = fs.readFileSync(filename, 'utf-8');
     const resources = yaml.load(content, {
       filename: filename
@@ -54,7 +53,7 @@ class Plugin {
 
     return this.prepareResources(resources).then(() => {
       this.serverless.cli.log(
-        `The multi-regional-plugin completed resources: ${yaml.dump(resources)}`
+        `The serverless-multi-region plugin completed resources: ${yaml.dump(resources)}`
       );
       _.merge(baseResources, resources);
     });
