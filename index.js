@@ -48,13 +48,13 @@ class Plugin {
 
     const filename = path.resolve(__dirname, 'resources.yml') // eslint-disable-line
     const content = fs.readFileSync(filename, 'utf-8');
-    const resources = yaml.safeLoad(content, {
+    const resources = yaml.load(content, {
       filename: filename
     });
 
     return this.prepareResources(resources).then(() => {
       this.serverless.cli.log(
-        `The multi-regional-plugin completed resources: ${yaml.safeDump(resources)}`
+        `The multi-regional-plugin completed resources: ${yaml.dump(resources)}`
       );
       _.merge(baseResources, resources);
     });
@@ -90,6 +90,7 @@ class Plugin {
 
     this.prepareApiRegionalBasePathMapping(resources);
     this.prepareApiRegionalEndpointRecord(resources);
+    this.prepareApiRegionalHealthCheck(resources);
 
     return this.prepareApiRegionalDomainSettings(resources).then(() => {
       if (createCdn) {
@@ -168,6 +169,25 @@ class Plugin {
     const elements = resources.Outputs.RegionalEndpoint.Value['Fn::Join'][1];
     if (elements[2]) {
       elements[2] = `/${this.options.stage}`;
+    }
+  }
+
+  prepareApiRegionalHealthCheck(resources) {
+    const dnsSettings = this.serverless.service.custom.dns;
+    const regionSettings = dnsSettings[this.options.region];
+
+    const properties = resources.Resources.ApiRegionalEndpointRecord.Properties;
+
+    if (regionSettings && regionSettings.healthCheckId) {
+      properties.HealthCheckId = regionSettings.healthCheckId;
+      delete resources.Resources.ApiRegionalHealthCheck;
+    } else {
+      const healthCheckProperties = resources.Resources.ApiRegionalHealthCheck.Properties;
+      if (dnsSettings.healthCheckResourcePath) {
+        healthCheckProperties.HealthCheckConfig.ResourcePath = dnsSettings.healthCheckResourcePath;
+      } else {
+        healthCheckProperties.HealthCheckConfig.ResourcePath = `/${this.options.stage}/healthcheck`;
+      }
     }
   }
 
