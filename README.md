@@ -6,7 +6,6 @@ This plugin will:
 
 - Set up API Gateways for your lambdas in each region
 - Set up a custom domain in each region for the API Gateway and specify the appropriate base path
-- Set up a basic HTTPS healthcheck for the API in each region
 - Set up CloudFormation in front of Route 53 failover with TLS 1.2 specified
 - Set up Route 53 with the desired domain name in front of CloudFront
 
@@ -43,9 +42,6 @@ custom:
     # Explicity specify the regional domain name.
     # This must be unique per stage but must be the same in each region for failover to function properly
     regionalDomainName: ${self:custom.dns.domainName}-${opt:stage}
-    # Specify the resource path for the healthcheck (only applicable if you don't specify a healthcheckId below)
-    # the default is /${opt:stage}/healthcheck
-    healthCheckResourcePath: /${opt:stage}/healthcheck
     # Settings per region for API Gateway and Route 53
     us-east-1:
       # Specify a certificate by its ARN
