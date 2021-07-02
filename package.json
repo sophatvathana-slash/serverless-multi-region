@@ -1,12 +1,12 @@
 {
-  "name": "serverless-multi-regional-plugin",
-  "version": "1.0.5",
-  "description": "Deploy an API Gateway service in multiple regions with a global CloudFront distribution",
-  "author": "John Gilbert <john.gilbert@danteinc.com> (danteinc.com)",
+  "name": "serverless-multi-region",
+  "version": "1.0.0",
+  "description": "Deploy an API Gateway service in multiple regions with a global CloudFront distribution and health checks",
+  "author": "Asterist",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/DanteInc/serverless-multi-regional-plugin.git"
+    "url": "git+https://github.com/tho-asterist/serverless-multi-region.git"
   },
   "keywords": [
     "serverless",
@@ -18,18 +18,19 @@
     "aws",
     "aws lambda",
     "amazon web services",
-    "serverless.com"
+    "multi-region"
   ],
   "main": "index.js",
   "scripts": {
     "lint": "eslint --fix index.js",
-    "test": "npm run lint"
+    "test": "jest"
   },
   "devDependencies": {
-    "eslint": "^5.3.0"
+    "eslint": "^7.29.0",
+    "jest": "^27.0.6"
   },
   "dependencies": {
-    "js-yaml": "^3.10.0",
-    "lodash": "^4.13.1"
+    "js-yaml": "^4.1.0",
+    "lodash": "^4.17.21"
   }
 }
