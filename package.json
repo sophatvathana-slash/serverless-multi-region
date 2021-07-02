@@ -1,6 +1,6 @@
 {
   "name": "serverless-multi-region",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Deploy an API Gateway service in multiple regions with a global CloudFront distribution and health checks",
   "author": "Asterist",
   "license": "MIT",

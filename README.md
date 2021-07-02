@@ -7,7 +7,6 @@ This plugin will:
 - Set up API Gateways for your lambdas in each region
 - Set up a custom domain in each region for the API Gateway and specify the appropriate base path
 - Set up a basic HTTPS healthcheck for the API in each region
-- Set up Route 53 for failover based routing with failover between regions based on the healthcheck created
 - Set up CloudFormation in front of Route 53 failover with TLS 1.2 specified
 - Set up Route 53 with the desired domain name in front of CloudFront
 
@@ -51,13 +50,10 @@ custom:
     us-east-1:
       # Specify a certificate by its ARN
       acmCertificateArn: arn:aws:acm:us-east-1:870671212434:certificate/55555555-5555-5555-5555-5555555555555555
-      # Use your own healthcheck by it's ID
-      healthCheckId: 44444444-4444-4444-4444-444444444444
       # Failover type (if not present, defaults to Latency based failover)
       failover: PRIMARY
     ap-northeast-1:
       acmCertificateArn: arn:aws:acm:ap-northeast-1:111111111111:certificate/55555555-5555-5555-5555-5555555555555555
-      healthCheckId: 33333333-3333-3333-3333-333333333333
       failover: SECONDARY
 
   # Settings used for CloudFront

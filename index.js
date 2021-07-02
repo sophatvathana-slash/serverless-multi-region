@@ -62,7 +62,7 @@ class Plugin {
 
   prepareResources(resources) {
     const credentials = this.serverless.providers.aws.getCredentials();
-    const acmCredentials = Object.assign({}, credentials, { region: this.options.region });
+    const acmCredentials = Object.assign({}, credentials, {region: this.options.region});
     this.acm = new this.serverless.providers.aws.sdk.ACM(acmCredentials);
 
     const distributionConfig = resources.Resources.ApiDistribution.Properties.DistributionConfig;
@@ -90,7 +90,6 @@ class Plugin {
 
     this.prepareApiRegionalBasePathMapping(resources);
     this.prepareApiRegionalEndpointRecord(resources);
-    this.prepareApiRegionalHealthCheck(resources);
 
     return this.prepareApiRegionalDomainSettings(resources).then(() => {
       if (createCdn) {
@@ -169,25 +168,6 @@ class Plugin {
     const elements = resources.Outputs.RegionalEndpoint.Value['Fn::Join'][1];
     if (elements[2]) {
       elements[2] = `/${this.options.stage}`;
-    }
-  }
-
-  prepareApiRegionalHealthCheck(resources) {
-    const dnsSettings = this.serverless.service.custom.dns;
-    const regionSettings = dnsSettings[this.options.region];
-
-    const properties = resources.Resources.ApiRegionalEndpointRecord.Properties;
-
-    if (regionSettings && regionSettings.healthCheckId) {
-      properties.HealthCheckId = regionSettings.healthCheckId;
-      delete resources.Resources.ApiRegionalHealthCheck;
-    } else {
-      const healthCheckProperties = resources.Resources.ApiRegionalHealthCheck.Properties;
-      if (dnsSettings.healthCheckResourcePath) {
-        healthCheckProperties.HealthCheckConfig.ResourcePath = dnsSettings.healthCheckResourcePath;
-      } else {
-        healthCheckProperties.HealthCheckConfig.ResourcePath = `/${this.options.stage}/healthcheck`;
-      }
     }
   }
 
@@ -301,7 +281,7 @@ class Plugin {
    */
   getCertArnFromHostName() {
     const certRequest = this.acm
-      .listCertificates({ CertificateStatuses: ['PENDING_VALIDATION', 'ISSUED', 'INACTIVE'] })
+      .listCertificates({CertificateStatuses: ['PENDING_VALIDATION', 'ISSUED', 'INACTIVE']})
       .promise();
 
     return certRequest
