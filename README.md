@@ -13,6 +13,8 @@ This plugin will:
 
 <img src="multi-regional-api.jpg" width="800">
 
+<img src="multi-regional-api.png" width="800">
+
 1. Install plugin:
 
 ```
