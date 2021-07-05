@@ -1,6 +1,6 @@
 {
-  "name": "serverless-multi-region",
-  "version": "1.0.5",
+  "name": "serverless-multi-regions",
+  "version": "1.0.0",
   "description": "Deploy an API Gateway service in multiple regions with a global CloudFront distribution and health checks",
   "author": "Asterist",
   "license": "MIT",
@@ -26,7 +26,7 @@
     "test": "jest"
   },
   "devDependencies": {
-    "eslint": "^7.29.0",
+    "eslint": "^7.30.0",
     "jest": "^27.0.6"
   },
   "dependencies": {

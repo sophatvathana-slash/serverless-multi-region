@@ -41,7 +41,10 @@ Resources:
               - '.amazonaws.com'
         RequestInterval: 30
         FailureThreshold: 3
-        Regions: [us-east-1, us-west-1, us-west-2]
+        Regions: [us-east-1, ap-southeast-1, eu-west-1]
+      HealthCheckTags:
+        - Key: Name
+          Value: ${self:service}-${opt:stage}-HealthCheck
   ApiRegionalEndpointRecord:
     Type: AWS::Route53::RecordSet
     Properties:

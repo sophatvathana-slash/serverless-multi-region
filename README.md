@@ -1,4 +1,4 @@
-# serverless-multi-region
+# serverless-multi-regions
 
 This plugin will add the resources to configure API Gateway regional endpoints and a global endpoint with CloudFront.
 
@@ -18,7 +18,7 @@ This plugin will:
 1. Install plugin:
 
 ```
-npm install serverless-multi-region --save-dev
+npm install serverless-multi-regions --save-dev
 ```
 
 2. Create your hosted zone and certificates
@@ -30,7 +30,7 @@ npm install serverless-multi-region --save-dev
 
 ```
 plugins:
-  - serverless-multi-region
+  - serverless-multi-regions
 
 # Add this to the standard SLS "custom" region
 custom:
@@ -100,3 +100,6 @@ You now have a Lambda API with cross-region failover!!!
 
 ## Related Documentation
 * [Building a Multi-region Serverless Application with Amazon API Gateway and AWS Lambda](https://aws.amazon.com/blogs/compute/building-a-multi-region-serverless-application-with-amazon-api-gateway-and-aws-lambda)
+
+
+## Note: This package mostly for our internal use.
