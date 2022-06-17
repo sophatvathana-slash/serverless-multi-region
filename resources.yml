@@ -6,7 +6,7 @@ Resources:
     Properties:
       Description: Stub Gateway Deployment
       RestApiId:
-        Ref: ApiGatewayRestApi
+        Ref: ApiGateway
       StageName: ${opt:stage}
   ApiRegionalDomainName:
     Type: AWS::ApiGateway::DomainName
@@ -23,7 +23,7 @@ Resources:
       DomainName:
         Ref: ApiRegionalDomainName
       RestApiId:
-        Ref: ApiGatewayRestApi
+        Ref: ApiGateway
       Stage: ${opt:stage}
   ApiRegionalHealthCheck:
     Type: AWS::Route53::HealthCheck
@@ -35,7 +35,7 @@ Resources:
         FullyQualifiedDomainName:
           Fn::Join:
             - ''
-            - - Ref: ApiGatewayRestApi
+            - - Ref: ApiGateway
               - '.execute-api.'
               - Ref: AWS::Region
               - '.amazonaws.com'
