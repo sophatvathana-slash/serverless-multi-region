@@ -147,13 +147,13 @@ class Plugin {
 
     const hostedZoneId = this.serverless.service.custom.dns.hostedZoneId;
     const hostZoneName = this.serverless.service.custom.dns.hostedZoneName;
-//     if (hostedZoneId) {
-//       delete properties.HostedZoneName;
+    if (hostedZoneId) {
+      delete properties.HostedZoneName;
       properties.HostedZoneId = hostedZoneId;
-//     } else {
-//       delete properties.HostedZoneId;
+    } else {
+      delete properties.HostedZoneId;
       properties.HostedZoneName = `${hostZoneName}.`;
-//     }
+    }
 
     const regionSettings = this.serverless.service.custom.dns[this.options.region];
     if (regionSettings && regionSettings.failover) {
@@ -281,13 +281,13 @@ class Plugin {
 
     const hostedZoneId = this.serverless.service.custom.dns.hostedZoneId;
     const hostZoneName = this.serverless.service.custom.dns.hostedZoneName;
-//     if (hostedZoneId) {
-//       delete properties.HostedZoneName;
+    if (hostedZoneId) {
+      delete properties.HostedZoneName;
       properties.HostedZoneId = hostedZoneId;
-//     } else {
-//       delete properties.HostedZoneId;
+    } else {
+      delete properties.HostedZoneId;
       properties.HostedZoneName = `${hostZoneName}.`;
-//     }
+    }
 
     properties.Name = `${this.fullDomainName}.`;
 
